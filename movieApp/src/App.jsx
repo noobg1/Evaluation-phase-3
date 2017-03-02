@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import MovieList from './MovieList.jsx'
+import FilterActor from './FilterActor.jsx'
 import {getMovies} from './helpers/fetchMovies.js'
 
 class App extends Component {
@@ -25,7 +26,9 @@ class App extends Component {
       .catch((error) => {
           console.log(error)
       })
-      
+    }
+    changeCurrentActor (actor) {
+        console.log(actor)
     }
     render() {
         if(this.state.movies.length === 0) {
@@ -35,7 +38,7 @@ class App extends Component {
             return (
           <div className="">
             <h1>THIS WEEK MOVIES</h1>
-            <FilterActor allActors={this.state.allActors} currentActor={this.state.currentActor}/>
+            <FilterActor allActors={this.state.allActors} currentActor={this.state.currentActor} changeCurrentActor={this.changeCurrentActor.bind(this)}/>
             <MovieList />
           </div>
           )
@@ -44,20 +47,5 @@ class App extends Component {
     }
 }
 
-const FilterActor = (props) => {
-  handleChange(event) {
-    console.log(event.target.value)
-  }
-  let actorsInDropdown = props.allActors.map((actor)=>{
-    return <option value={actor}>actor</option>
-  })
-    return (<div>
-      <h3>Filter by Actor</h3>
-      <select value={props.currentActor} onChange={handleChange}>
-            <option value={props.currentActor}>{props.currentActor}</option>
-            {actorsInDropdown}
-      </select>
-      </div>)
-}
 
 export default App
