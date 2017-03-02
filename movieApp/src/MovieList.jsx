@@ -3,13 +3,15 @@ import Movie from './Movie.jsx'
 
 class MovieList extends Component {
     render() {
-        return (
+      let movies = this.props.movies.map((movie) => {
+        return( <li key={movie.id}><Movie movieDetails={movie}/> </li> )
+    })
+      return (
       <div className="">
-       
-        <Movie />
+       {movies}
       </div>
     )
-    }
+  }
 }
 
 export default MovieList

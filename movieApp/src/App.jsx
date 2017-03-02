@@ -31,6 +31,8 @@ class App extends Component {
         console.log(actor)
     }
     render() {
+        let filteredMovies = this.state.movies
+        
         if(this.state.movies.length === 0) {
             return (<div>Loading ....</div>)
         }
@@ -39,7 +41,7 @@ class App extends Component {
           <div className="">
             <h1>THIS WEEK MOVIES</h1>
             <FilterActor allActors={this.state.allActors} currentActor={this.state.currentActor} changeCurrentActor={this.changeCurrentActor.bind(this)}/>
-            <MovieList />
+            <MovieList movies={filteredMovies}/>
           </div>
           )
         }
