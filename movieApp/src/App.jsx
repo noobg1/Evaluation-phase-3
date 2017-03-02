@@ -16,7 +16,7 @@ class App extends Component {
         return Array.from(actorsSet)
     }
     componentDidMount () {
-        getMovies('https://movie-api-atlrumqzze.now.sh/movies-ref')
+        getMovies('https://movie-api-atlrumqzze.now.sh/movies')
       .then ((response) => {
           let actors = this.getAllActorsList(response.data)
           //console.log(actors)

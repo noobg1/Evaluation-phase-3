@@ -1,0 +1,10 @@
+ .all-movie {
+    display: inline-flex;
+    background-color: #B2DFDB;  
+    }
+li {
+  list-style-type: none;
+}
+strip {
+  height: 100%;
+}
