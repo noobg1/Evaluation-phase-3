@@ -19,20 +19,35 @@ class App extends Component {
         getMovies('https://movie-api-atlrumqzze.now.sh/movies-ref')
       .then ((response) => {
           let actors = this.getAllActorsList(response.data)
-          console.log(actors)
+          //console.log(actors)
           this.setState ({movies: response.data, allActors: actors})
-          console.log(response.data)
+          //console.log(response.data)
       })
       .catch((error) => {
           console.log(error)
       })
     }
     changeCurrentActor (actor) {
-        console.log(actor)
+        this.setState({currentActor: actor})
+    }
+    getFilteredMovies (allMovies, actorSelected) {
+        let filteredMoviesSet = new Set()
+        if(actorSelected === 'all')
+            return allMovies
+        else {
+            allMovies.forEach ((movie) => {
+                movie.actors.forEach ((actor) => {
+                    if (actor === actorSelected) {
+                        filteredMoviesSet.add(movie)
+                    }
+                })
+            })
+            return Array.from(filteredMoviesSet)
+        }
     }
     render() {
-        let filteredMovies = this.state.movies
-        
+        let filteredMovies = this.getFilteredMovies(this.state.movies, this.state.currentActor)
+
         if(this.state.movies.length === 0) {
             return (<div>Loading ....</div>)
         }
