@@ -17,16 +17,17 @@ const Movie = (props) => {
     <div className="all-movie"> 
       <div style={verticalStrip} className="strip">
       </div>
-      <div>
+      <div className="content">
         <h2>{movieDetails.name} </h2>
         <p>{movieDetails.description}</p>
+        Actors: 
         <ul>
           {movieActors}
-          Release Date: {moment(movieDetails.releaseDate).format('Do MMMM YYYY')}
         </ul>
-        <div style={ratingStyle}>
-          {movieDetails.rating} / 5
-        </div>
+        Release Date: {moment(movieDetails.releaseDate).format('Do MMMM YYYY')}
+      </div>
+      <div style={ratingStyle} className="rating">
+          {movieDetails.rating}/5
       </div>
     </div>
   )
